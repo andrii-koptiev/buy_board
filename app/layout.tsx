@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Poppins } from 'next/font/google';
 import './globals.css';
 import Navigation from './ui/NavMenu';
+import Image from 'next/image';
 
 const poppins = Poppins({
   subsets: ['devanagari'],
@@ -21,7 +22,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`flex ${poppins.className}`}>
-        <Navigation />
+        <div className="pt-4">
+          <span className="flex w-full justify-center text-4xl font-extrabold text-purple mb-[96px]">
+            BUYBOARD
+          </span>
+          <Navigation />
+        </div>
         <main className="bg-grey-100 w-full h-screen"> {children}</main>
       </body>
     </html>
