@@ -11,6 +11,7 @@ const NavButtonsList = () => {
     <>
       {navData.map(({ name, Icon }) => (
         <li
+          data-testid={`nav-link-${name}`}
           key={name}
           onClick={() => setSectionPath(name)}
           className="flex items-center pl-2 gap-4 text-gray-400 h-11 mb-2 rounded-lg bg-purple cursor-pointer"
