@@ -28,7 +28,9 @@ export default function RootLayout({
           </span>
           <Navigation />
         </div>
-        <main className="bg-grey-100 w-full h-screen"> {children}</main>
+        <main className="bg-grey-100 w-full h-screen px-20 py-10">
+          {children}
+        </main>
       </body>
     </html>
   );

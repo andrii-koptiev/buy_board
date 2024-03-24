@@ -1,21 +1,32 @@
 import { NavSections } from '@/enums';
-import { useRouter } from 'next/navigation';
-import { useCallback, useState } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
+import { useCallback, useEffect, useState } from 'react';
 
 type useAppNavReturnType = {
-  activeSectionName: NavSections | null;
+  activeSectionName: string | null;
   setMainPathname: (newPath: NavSections | null) => void;
 };
 
 export const useAppNav = (): useAppNavReturnType => {
   const { replace } = useRouter();
-  const [activeSectionName, setActiveSectionName] =
-    useState<NavSections | null>(null);
+  const pathName = usePathname();
+  const [activeSectionName, setActiveSectionName] = useState<string | null>(
+    null
+  );
+
+  const getActiveSection = useCallback(() => {
+    const activeSection = pathName.split('/');
+
+    setActiveSectionName(activeSection[1]);
+  }, [pathName]);
+
+  useEffect(() => {
+    getActiveSection();
+  }, [getActiveSection]);
 
   const setMainPathname = useCallback(
     (newPath: NavSections | null) => {
       replace(`/${newPath}`);
-      setActiveSectionName(newPath);
     },
     [replace]
   );
